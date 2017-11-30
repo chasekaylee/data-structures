@@ -12,16 +12,16 @@ var LinkedList = function() {
     } else {
       list.tail = node;
       list.head = node;
-    }
-
-    // check if head ! exists
-    // if (!list.head) {
-    //   // set head equal to tail
-    //   list.head = node;
-    // }     
+    }     
   };
 
   list.removeHead = function() {
+    // storing the value of what was removed
+    var removed = list.head.value;
+    // changing head reference to next node (garbage collector should remove old head *no reference*)
+    list.head = list.head.next;
+    //returns removed value
+    return removed;
   };
 
   list.contains = function(target) {
