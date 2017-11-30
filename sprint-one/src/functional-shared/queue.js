@@ -19,9 +19,14 @@ Queue.queueMethods.enqueue = function(value) {
 },
   
 Queue.queueMethods.dequeue = function() {
-  var dq = Object.keys(this.storage)[0];
-  
+  var dq = this.storage[0];
   delete Object.keys(this.storage)[0];
+  
+  for (var i = 0; i < this.size(); i++) {
+    this.storage[i] = this.storage[i + 1];
+  }
+  
+  delete this.storage[this.size() - 1];
   
   return dq;
 },
