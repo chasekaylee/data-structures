@@ -25,9 +25,22 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    var currentNode = list.head;
+    
+    while (currentNode.next !== null) {
+      // check if current value is the target
+      if (currentNode.value === target) {
+        // return true
+        return true;
+      } 
+      currentNode = currentNode.next;
+    }
+    
+    return list.tail.value === target ? true : false;
   };
 
   return list;
+    
 };
 
 var Node = function(value) {
@@ -41,4 +54,7 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ addTail : O(n)
+ removeHead : O(1)
+ contains: O(n)
  */
