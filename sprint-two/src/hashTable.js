@@ -7,12 +7,25 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var value;
+  var value, changed;
+
   if (!(Array.isArray(this._storage.get(index)))) {
     this._storage.set(index, []);
   } 
   value = this._storage.get(index);
-  value.push([k, v]);
+  //if statement to prevent unneccessary looping
+  if (value.length > 0) {
+    for (var i = 0; i < value.length; i++) {
+      if (value[i][0] === k) {
+        value[i][1] = v;
+        changed = true;
+      }
+    }
+  }
+  //if nothing was found, nothing was changed, is new key
+  if (!changed) {
+    value.push([k, v]);
+  }
   this._storage.set(index, value);
 };
 
@@ -27,6 +40,12 @@ HashTable.prototype.retrieve = function(k) {
 };
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var value = this._storage.get(index);
+  for (var i = 0; i < value.length; i++) {
+    if (value[i][0] === k) {
+      value.splice(i, 1);
+    }
+  }
 };
 
 
