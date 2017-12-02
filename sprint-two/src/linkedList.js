@@ -29,14 +29,14 @@ var LinkedList = function() {
     
     while (currentNode.next !== null) {
       // check if current value is the target
-      if (currentNode.value === target) {
+      if (JSON.stringify(currentNode.value) === JSON.stringify(target)) {
         // return true
         return true;
       } 
       currentNode = currentNode.next;
     }
     
-    return list.tail.value === target ? true : false;
+    return JSON.stringify(list.tail.value) === JSON.stringify(target) ? true : false;
   };
 
   return list;
