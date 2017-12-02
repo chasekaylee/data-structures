@@ -51,5 +51,12 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
-  // add more tests here to test the functionality of linkedList
+  it('should be able to take in and check for any type of value', function() {
+    linkedList.addToTail('I made it!');
+    linkedList.addToTail([1, 2, 3]);
+    linkedList.addToTail({a: 1});
+    expect(linkedList.contains('I made it!')).to.equal(true);
+    expect(linkedList.contains([1, 2, 3])).to.equal(true);
+    expect(linkedList.contains({a: 1})).to.equal(true);
+  }); 
 });
