@@ -68,4 +68,27 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should be able to take in and check for any type of value', function() {
+    graph.addNode('I made it!');
+    graph.addNode([1, 2, 3]);
+    graph.addNode({a: 1});
+    expect(graph.contains('I made it!')).to.equal(true);
+    expect(graph.contains([1, 2, 3])).to.equal(true);
+    expect(graph.contains({a: 1})).to.equal(true);
+  });
+
+  it('should not change graph if trying to remove non-existant nodes', function() {
+    graph.addNode(1);
+    graph.addNode(-2);
+    graph.addNode(3);
+    graph.addNode(4);
+    graph.removeNode(1);
+    graph.removeNode(1);
+    expect(graph.contains(1)).to.equal(false);
+    expect(graph.contains(-2)).to.equal(true);
+    expect(graph.contains(3)).to.equal(true);
+    expect(graph.contains(4)).to.equal(true);
+  }); 
+
 });
