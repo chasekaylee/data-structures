@@ -2,7 +2,6 @@ var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
   _.extend(newTree, treeMethods);
-  // your code here
   newTree.children = []; 
 
   return newTree;
@@ -17,7 +16,7 @@ treeMethods.addChild = function(value) {
 treeMethods.contains = function(target) {
   var isFound = false; 
   
-  if (this.value === target) {
+  if (JSON.stringify(this.value) === JSON.stringify(target)) {
     return true;
   }
   
