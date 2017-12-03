@@ -2,7 +2,7 @@ describe('tree', function() {
   var tree;
 
   beforeEach(function() {
-    tree = Tree();
+    tree = Tree(); 
   });
 
   it('should have methods named "addChild" and "contains", and a property named "value"', function() {
@@ -41,4 +41,17 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should be able to take in and check for any type of value', function() {
+    tree.addChild('I made it!');
+    tree.addChild([1, 2, 3]);
+    tree.addChild({a: 1});
+    expect(tree.contains('I made it!')).to.equal(true);
+    expect(tree.contains([1, 2, 3])).to.equal(true);
+    expect(tree.contains({a: 1})).to.equal(true);
+  });
+
+  it('should be able to check root node for value', function() {
+    var rootTree = Tree(5);
+    expect(rootTree.contains(5)).to.equal(true);
+  });
 });

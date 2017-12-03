@@ -17,7 +17,7 @@ treeMethods.addChild = function(value) {
 treeMethods.contains = function(target) {
   var isFound = false; 
   
-  if (this.value === target) {
+  if (JSON.stringify(this.value) === JSON.stringify(target)) {
     return true;
   }
   
