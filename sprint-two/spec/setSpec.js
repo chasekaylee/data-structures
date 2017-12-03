@@ -24,4 +24,14 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should not add duplicate values', function() {
+    set.add('I AM UNIQUE');
+    set.add('I AM UNIQUE');
+    set.add('I AM UNIQUE');
+    set.add('I AM UNIQUE');
+    set.add('I AM UNIQUE');
+    set.remove('I AM UNIQUE');
+    expect(set.contains('I AM UNIQUE')).to.equal(false);
+  });
+
 });
